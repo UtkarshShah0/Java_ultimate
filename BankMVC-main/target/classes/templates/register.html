@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Register</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="brand">
+			<div class="logo">JMD</div>
+			<div>Bank</div>
+        </div>
+      </div>
+
+      <h2 class="page-title">Register</h2>
+
+      <div th:if="${errorMessage}" class="alert error" th:text="${errorMessage}"></div>
+      <div th:if="${successMessage}" class="alert success" th:text="${successMessage}"></div>
+
+      <form th:action="@{/auth/register}" th:object="${registerDto}" method="post" class="form">
+        <div class="form-row"><label>Name</label><input th:field="*{name}" /><div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-row"><label>Email</label><input th:field="*{email}" type="email"/><div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-row"><label>Phone</label><input th:field="*{phone}" /><div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-row"><label>Initial Balance</label><input th:field="*{initialBalance}" type="number" step="0.01"/><div th:if="${#fields.hasErrors('initialBalance')}" th:errors="*{initialBalance}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-row"><label>Password</label><input th:field="*{password}" type="password"/><div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Register</button>
+          <a th:href="@{/auth/login}" class="btn secondary">Login</a>
+        </div>
+      </form>
+    </div>
+
+    <footer class="small center">Built with ❤️ — Minimal Banking App</footer>
+  </div>
+</body>
+</html>

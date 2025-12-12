@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Error</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="brand">
+			<div class="logo">JMD</div>
+			<div>Bank</div>
+        </div>
+      </div>
+
+      <h2 class="page-title">Error</h2>
+      <div class="alert error" th:text="${errorMessage}">An error occurred</div>
+
+      <div class="form-actions">
+        <a th:href="@{/auth/login}" class="btn">Return to Login</a>
+        <a th:href="@{/auth/register}" class="btn secondary">Register</a>
+      </div>
+    </div>
+
+    <footer class="small center">If you keep seeing errors, check server logs for details</footer>
+  </div>
+</body>
+</html>

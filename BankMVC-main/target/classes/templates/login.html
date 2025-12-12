@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="brand">
+			<div class="logo">JMD</div>
+			<div>Bank</div>
+        </div>
+      </div>
+
+      <h2 class="page-title">Login</h2>
+
+      <div th:if="${errorMessage}" class="alert error" th:text="${errorMessage}"></div>
+      <div th:if="${successMessage}" class="alert success" th:text="${successMessage}"></div>
+
+      <form th:action="@{/auth/login}" th:object="${loginDto}" method="post" class="form">
+        <div class="form-row"><label>Email or Phone</label><input th:field="*{login}" /><div th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-row"><label>Password</label><input th:field="*{password}" type="password"/><div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="small" style="color:var(--error)"></div></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Login</button>
+          <a th:href="@{/auth/register}" class="btn secondary">Register</a>
+        </div>
+      </form>
+    </div>
+
+    <footer class="small center">Use email or phone to login</footer>
+  </div>
+</body>
+</html>

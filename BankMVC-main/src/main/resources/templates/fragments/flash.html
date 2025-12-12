@@ -1,0 +1,11 @@
+<!-- fragments/flash.html -->
+<div th:fragment="flash">
+  <div th:if="${success}" class="alert success">
+    <span class="icon">✓</span>
+    <span th:text="${success}">Success message</span>
+  </div>
+  <div th:if="${error}" class="alert error">
+    <span class="icon">!</span>
+    <span th:text="${error}">Error message</span>
+  </div>
+</div>

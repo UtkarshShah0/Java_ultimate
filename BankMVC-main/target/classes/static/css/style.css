@@ -1,0 +1,103 @@
+/* style.css - simple, clean bank UI (no fragments required) */
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --accent: #2b6fb3;
+  --accent-dark: #254f88;
+  --muted: #6b7280;
+  --success: #1a7f37;
+  --error: #c62828;
+  --radius: 10px;
+  --shadow: 0 8px 20px rgba(31,41,55,0.06);
+  --maxw: 920px;
+  --pad: 20px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Reset / base */
+* { box-sizing: border-box; }
+html, body { height:100%; margin:0; background: linear-gradient(180deg,#eef3fb 0%, #f7fafc 100%); color:#111827; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+a { color: var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* Page container */
+.container {
+  max-width: var(--maxw);
+  margin: 36px auto;
+  padding: var(--pad);
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+/* Header / brand (optional) */
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.brand { display:flex; gap:12px; align-items:center; font-weight:700; color:var(--accent); font-size:18px; }
+.brand .logo {
+  width:44px; height:44px; border-radius:10px;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  display:inline-flex; align-items:center; justify-content:center; color:#fff; font-weight:700;
+}
+
+/* Page title */
+.page-title { margin:0 0 12px 0; font-size:20px; color:#0f172a; }
+
+/* Forms */
+.form {
+  display:block;
+}
+.form-row { display:flex; flex-direction:column; margin-bottom:14px; }
+.form-row.row { flex-direction:row; gap:12px; }
+label { font-size:13px; color:var(--muted); margin-bottom:6px; }
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], select, textarea {
+  padding:10px 12px; border-radius:8px; border:1px solid #e6e9ef; background:#fff; font-size:14px;
+  transition: box-shadow .15s, border-color .12s; width:100%;
+}
+input:focus, select:focus, textarea:focus { outline:none; border-color: var(--accent); box-shadow: 0 8px 18px rgba(37,111,179,0.06); }
+
+/* Small helper text */
+.help { font-size:12px; color:var(--muted); margin-top:6px; }
+
+/* Buttons */
+.btn {
+  display:inline-block; padding:10px 16px; border-radius:10px; cursor:pointer; border:none; font-weight:600;
+  background: var(--accent); color:white; text-decoration:none;
+}
+.btn:hover { background: var(--accent-dark); }
+.btn.secondary { background: transparent; color:var(--accent-dark); border:1px solid #e6eefc; }
+.btn.danger { background: var(--error); color:white; }
+
+/* Form actions layout */
+.form-actions { display:flex; gap:10px; align-items:center; margin-top:8px; }
+
+/* Alerts / Flash messages */
+.alert { padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:600; display:flex; gap:10px; align-items:center; }
+.alert.success { background: #edf9f0; color: var(--success); border:1px solid rgba(26,127,55,0.08); }
+.alert.error { background: #fff5f5; color: var(--error); border:1px solid rgba(198,40,40,0.08); }
+.alert.info { background: #f1f8ff; color: var(--accent-dark); border:1px solid rgba(37,111,179,0.06); }
+
+/* Table (for future transactions) */
+.table { width:100%; border-collapse:collapse; margin-top:12px; }
+.table th, .table td { text-align:left; padding:10px 8px; border-bottom:1px solid #f1f5f9; font-size:14px; }
+
+/* Tiny responsive tweaks */
+@media (max-width:720px) {
+  .container { padding: 12px; margin: 18px auto; }
+  .form-row.row { flex-direction:column; }
+}
+
+/* misc */
+.center { text-align:center; }
+.small { font-size:13px; color:var(--muted); }

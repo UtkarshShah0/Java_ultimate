@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="brand">
+          <div class="logo">JMD</div>
+          <div>Bank</div>
+        </div>
+
+        <div class="small">
+          <div th:if="${user != null}">
+            <div><strong th:text="${user.name}">User</strong></div>
+            <div><a th:href="@{/auth/logout}" class="small">Logout</a></div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="page-title">Dashboard</h2>
+
+      <div th:if="${errorMessage}" class="alert error" th:text="${errorMessage}"></div>
+      <div th:if="${successMessage}" class="alert success" th:text="${successMessage}"></div>
+
+      <div>
+        <p>Account number: <strong th:text="${account.accountNumber}"></strong></p>
+        <p>Balance: <strong th:text="${account.balance}"></strong></p>
+      </div>
+
+      <div style="margin-top:14px;">
+        <a th:href="@{/app/deposit}" class="btn">Deposit</a>
+        <a th:href="@{/app/withdraw}" class="btn secondary">Withdraw</a>
+        <a th:href="@{/app/transfer}" class="btn secondary">Transfer</a>
+      </div>
+    </div>
+
+    <footer class="small center">Logged in as <span th:text="${user.email}">email</span></footer>
+  </div>
+</body>
+</html>
