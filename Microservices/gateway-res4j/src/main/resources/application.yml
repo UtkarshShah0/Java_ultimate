@@ -1,0 +1,61 @@
+server:
+  port: 9999
+  
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      
+  endpoints:
+    web:
+      exposure:
+        include: health
+  
+          
+spring:
+  application:
+    name: gateway-res4j
+  
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+      - id : helloservice
+        uri: lb://helloservice-res4j  
+        predicates:
+          - Path=/service/**
+        filters:
+          - name: CircuitBreaker
+            args:
+              name: helloServiceCircuitBreaker
+              fallbackUri: forward:/myfallback  
+      
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost  
+    
+        
+resilience4j:
+  circuitbreaker:
+    instances:
+      helloServiceCircuitBreaker:
+       registerHealthIndicator: true
+       eventConsumerBufferSize: 10
+       automaticTransitionFromOpenToHalfOpenEnabled: true
+       failureRateThreshold: 50
+       minimumNumberOfCalls: 5
+       permittedNumberOfCallsInHalfOpenState: 3
+       slidingWindowSize: 10
+       waitDurationInOpenState: 5s
+       slidingWindowType: COUNT_BASED      
+    

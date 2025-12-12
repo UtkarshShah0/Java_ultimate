@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Register Account</title>
+</head>
+<body>
+  <h2>Register Account</h2>
+  <form th:action="@{/accounts/register}" th:object="${registerDto}" method="post">
+    <div>
+      <label>Account Number</label>
+      <input th:field="*{accountNumber}" />
+      <div th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"></div>
+    </div>
+    <div>
+      <label>Account Holder Name</label>
+      <input th:field="*{accountHolderName}" />
+      <div th:if="${#fields.hasErrors('accountHolderName')}" th:errors="*{accountHolderName}"></div>
+    </div>
+    <div>
+      <label>Initial Balance</label>
+      <input th:field="*{balance}" />
+      <div th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}"></div>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+  <p><a th:href="@{/}">Home</a></p>
+</body>
+</html>

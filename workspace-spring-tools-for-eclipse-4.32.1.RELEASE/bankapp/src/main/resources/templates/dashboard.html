@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Account Dashboard - <span th:text="${accountNumber}"></span></h2>
+  <p>Balance: <strong th:text="${balance}"></strong></p>
+
+  <p>
+    <a th:href="@{|/accounts/deposit?acc=${accountNumber}|}">Deposit</a> |
+    <a th:href="@{|/accounts/withdraw?acc=${accountNumber}|}">Withdraw</a> |
+    <a th:href="@{/accounts/register}">Register another account</a>
+  </p>
+
+  <h3>Recent Transactions</h3>
+  <table border="1">
+    <thead><tr><th>Type</th><th>Amount</th><th>Time</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr th:each="tx : ${transactions}">
+        <td th:text="${tx.type}">TYPE</td>
+        <td th:text="${tx.amount}">AMOUNT</td>
+        <td th:text="${tx.timestamp}">TIME</td>
+        <td th:text="${tx.details}">DETAILS</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
